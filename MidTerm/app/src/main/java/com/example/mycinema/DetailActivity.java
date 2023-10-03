@@ -34,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
         ImageView imgView = (ImageView) findViewById(R.id.movieImage);
 
         txtView.setText(selectedShape.getName());
+
         imgView.setImageResource(selectedShape.getImage());
     }
 }

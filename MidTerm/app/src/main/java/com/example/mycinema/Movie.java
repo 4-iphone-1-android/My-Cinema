@@ -7,7 +7,7 @@ public class Movie {
 
     private String genre;
 
-    public Movie(String id, String name, int image) {
+    public Movie(String id, String name, int image, String genre) {
         this.id = id;
         this.name = name;
         this.image = image;
