@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class search_bar extends AppCompatActivity {
+public class SearchBar extends AppCompatActivity {
     public static ArrayList<Movie> movieList = new ArrayList<Movie>();
     private ListView listView;
     private String selectedFilter = "all";
@@ -201,7 +201,7 @@ public class search_bar extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(search_bar.this, MainActivity.class);
+        Intent intent = new Intent(SearchBar.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".search_bar">
+    tools:context=".SearchBar">
 
     <LinearLayout
         android:layout_width="match_parent"
