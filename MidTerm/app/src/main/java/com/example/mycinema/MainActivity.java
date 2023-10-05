@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void openSearchBarActivity() {
-        Intent intent = new Intent(this, search_bar.class);
+        Intent intent = new Intent(this, SearchBar.class);
         startActivity(intent);
     }
 
