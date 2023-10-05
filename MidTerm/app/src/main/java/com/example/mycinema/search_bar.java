@@ -207,4 +207,3 @@ public class search_bar extends AppCompatActivity {
     }
 
 }
-
