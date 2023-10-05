@@ -1,6 +1,5 @@
 package com.example.mycinema;
 
-import static com.example.mycinema.MainActivity.movieList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -198,5 +197,14 @@ public class search_bar extends AppCompatActivity {
     public void horrorFilterTapped(View view) {
         filterList("horror");
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(search_bar.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
 

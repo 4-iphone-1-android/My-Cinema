@@ -2,9 +2,6 @@ package com.example.mycinema;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
@@ -12,7 +9,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ArrayList<Movie> movieList = new ArrayList<Movie>();
+    public static ArrayList<Movie> movieList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
         SearchView searchView = findViewById(R.id.movieSearchView);
         searchView.clearFocus();
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                openSearchBarActivity();
-            }
-        });
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
 
         setUpData();
-        setUpList();
     }
 
     private void setUpData() {
@@ -119,12 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setUpList() {
-
-    }
 
     private void openSearchBarActivity() {
         Intent intent = new Intent(this, search_bar.class);
         startActivity(intent);
     }
+
 }
