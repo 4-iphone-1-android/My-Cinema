@@ -12,8 +12,7 @@ public class DetailActivity extends AppCompatActivity {
     Movie selectedShape;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         getSelectedShape();
@@ -21,15 +20,13 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void getSelectedShape()
-    {
+    private void getSelectedShape() {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
         selectedShape = MainActivity.movieList.get(Integer.valueOf(parsedStringID));
     }
 
-    private void setValues()
-    {
+    private void setValues() {
         TextView txtView = (TextView) findViewById(R.id.movieName);
         ImageView imgView = (ImageView) findViewById(R.id.movieImage);
 
