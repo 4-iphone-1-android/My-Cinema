@@ -122,4 +122,3 @@ public class SearchBar extends AppCompatActivity {
     }
 
 }
-
