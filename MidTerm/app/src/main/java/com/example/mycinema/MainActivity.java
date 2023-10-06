@@ -2,15 +2,12 @@ package com.example.mycinema;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<Movie> movieList = new ArrayList<>();
 
@@ -24,9 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
 
         setUpData();
-
-        ImageView heartButton = findViewById(R.id.showFavoriteButton);
-        heartButton.setOnClickListener(this);
     }
 
     private void setUpData() {
@@ -122,9 +116,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(this, FavoriteList.class);
-        startActivity(intent);
-    }
 }
