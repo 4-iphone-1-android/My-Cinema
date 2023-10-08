@@ -34,72 +34,8 @@
             app:iconifiedByDefault="false"
             app:queryHint="Find your favourite movies" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/actionBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:onClick="actionFilterTapped"
-                android:padding="10dp"
-                android:text="Action" />
 
-            <Button
-                android:id="@+id/animeBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:onClick="animeFilterTapped"
-                android:padding="10dp"
-                android:text="Anime" />
-
-            <Button
-                android:id="@+id/comedyBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:onClick="comedyFilterTapped"
-                android:padding="10dp"
-                android:text="Comedy" />
-
-            <Button
-                android:id="@+id/dramaBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:onClick="dramaFilterTapped"
-                android:padding="10dp"
-                android:text="Drama" />
-
-            <Button
-                android:id="@+id/horrorBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:onClick="horrorFilterTapped"
-                android:padding="10dp"
-                android:text="Horror" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/line_11"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/line_11" />
 
         <ListView
             android:id="@+id/movieListView"
