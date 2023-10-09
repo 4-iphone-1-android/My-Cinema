@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
 
         setUpData();
-
         ImageView heartButton = findViewById(R.id.showFavoriteButton);
         heartButton.setOnClickListener(this);
     }
@@ -115,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-
 
     private void openSearchBarActivity() {
         Intent intent = new Intent(this, SearchBar.class);

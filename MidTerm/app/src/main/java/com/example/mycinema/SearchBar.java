@@ -1,6 +1,5 @@
 package com.example.mycinema;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,7 +18,6 @@ public class SearchBar extends AppCompatActivity {
     private String selectedFilter = "all";
     private  ArrayList<Movie> movieList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +25,6 @@ public class SearchBar extends AppCompatActivity {
         initSearchWidgets();
         setUpList();
         setUpOnclickListener();
-
-
     }
 
     private void initSearchWidgets() {
@@ -120,5 +116,4 @@ public class SearchBar extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }

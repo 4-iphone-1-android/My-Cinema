@@ -34,7 +34,9 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             app:iconifiedByDefault="false"
-            app:queryHint="Find your favourite movies"></androidx.appcompat.widget.SearchView>
+            app:queryHint="Find your favourite movies">
+
+        </androidx.appcompat.widget.SearchView>
 
 
         <TextView
@@ -49,6 +51,8 @@
             android:id="@+id/trendingList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginHorizontal="10dp"/>
 
 
@@ -126,13 +130,14 @@
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cateList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cateList"
-            android:layout_marginHorizontal="10dp"/>
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -150,7 +155,4 @@
             android:background="@drawable/heart_shape" />
 
     </LinearLayout>
-
-
-
 </RelativeLayout>
