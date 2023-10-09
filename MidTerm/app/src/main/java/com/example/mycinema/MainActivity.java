@@ -28,8 +28,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchView.clearFocus();
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
         setUpData();
+        setUpOnclickListener();
         ImageView heartButton = findViewById(R.id.showFavoriteButton);
         heartButton.setOnClickListener(this);
+    }
+
+    private void setUpOnclickListener() {
+        RecyclerView recyclerView = findViewById(R.id.categoryList);
+        CategoryAdapter adapter = new CategoryAdapter(this, movieList);
+        recyclerView.setAdapter(adapter);
     }
 
     private void setUpData() {
