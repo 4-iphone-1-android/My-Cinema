@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -13,6 +16,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static ArrayList<Movie> movieList = new ArrayList<>();
+    private String selectedFilter = "all";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SearchView searchView = findViewById(R.id.movieSearchView);
         searchView.clearFocus();
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
-
         setUpData();
         ImageView heartButton = findViewById(R.id.showFavoriteButton);
         heartButton.setOnClickListener(this);
@@ -113,6 +117,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+    }
+    private void filterList(String status){
+        selectedFilter = status;
+
+        ArrayList<Movie> filteredMovie = new ArrayList<Movie>();
+
+        for (Movie movie : MainActivity.movieList) {
+            if (movie.getGenre().equalsIgnoreCase(status)) {
+                filteredMovie.add(movie);
+            }
+        }
+        CategoryAdapter adapter = new CategoryAdapter(this, filteredMovie);
+        RecyclerView recyclerView = findViewById(R.id.categoryList);
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void actionFilterTapped(View view) {
+        filterList("action");
+    }
+
+    public void comedyFilterTapped(View view) {
+        filterList("comedy");
+    }
+
+    public void dramaFilterTapped(View view) {
+        filterList("drama");
+    }
+
+    public void animeFilterTapped(View view) {
+        filterList("anime");
+    }
+
+    public void horrorFilterTapped(View view) {
+        filterList("horror");
     }
 
     private void openSearchBarActivity() {
