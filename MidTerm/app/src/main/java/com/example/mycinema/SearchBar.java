@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 public class SearchBar extends AppCompatActivity {
     private ListView listView;
-    private String selectedFilter = "all";
-    private  ArrayList<Movie> movieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,43 +70,6 @@ public class SearchBar extends AppCompatActivity {
             }
         });
     }
-
-    private void filterList(String status) {
-        selectedFilter = status;
-
-        ArrayList<Movie> filteredMovie = new ArrayList<Movie>();
-
-        for (Movie movie : MainActivity.movieList) {
-            if (movie.getGenre().equalsIgnoreCase(status)) {
-                filteredMovie.add(movie);
-            }
-        }
-        MovieAdapter adapter = new MovieAdapter(getApplicationContext(), 0,
-                filteredMovie);
-        listView.setAdapter(adapter);
-    }
-
-
-    public void actionFilterTapped(View view) {
-        filterList("action");
-    }
-
-    public void comedyFilterTapped(View view) {
-        filterList("comedy");
-    }
-
-    public void dramaFilterTapped(View view) {
-        filterList("drama");
-    }
-
-    public void animeFilterTapped(View view) {
-        filterList("anime");
-    }
-
-    public void horrorFilterTapped(View view) {
-        filterList("horror");
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
