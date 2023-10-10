@@ -129,11 +129,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             movieList.add(pic_25);
 
         }
-//        trendingMovies.add(movieList.get(15));
-//        trendingMovies.add(movieList.get(16));
-//        trendingMovies.add(movieList.get(17));
-//        trendingMovies.add(movieList.get(18));
-//        trendingMovies.add(movieList.get(19));
+        trendingMovies.add(movieList.get(15));
+        trendingMovies.add(movieList.get(16));
+        trendingMovies.add(movieList.get(17));
+        trendingMovies.add(movieList.get(18));
+        trendingMovies.add(movieList.get(19));
     }
     private void filterList(String status){
         selectedFilter = status;
