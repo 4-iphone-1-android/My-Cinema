@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static ArrayList<Movie> movieList = new ArrayList<>();
     private String selectedFilter = "all";
+    ArrayList<Movie> horrorMovies = filterMoviesByCategory("horror");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         SearchView searchView = findViewById(R.id.movieSearchView);
         searchView.clearFocus();
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
@@ -33,10 +33,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         heartButton.setOnClickListener(this);
     }
 
+
     private void setUpOnclickListener() {
         RecyclerView recyclerView = findViewById(R.id.categoryList);
         CategoryAdapter adapter = new CategoryAdapter(this, movieList);
         recyclerView.setAdapter(adapter);
+    }
+
+    private ArrayList<Movie> filterMoviesByCategory(String category) {
+        ArrayList<Movie> filteredList = new ArrayList<>();
+        for (Movie movie : movieList) {
+            if (movie.getGenre().equalsIgnoreCase(category)) {
+                filteredList.add(movie);
+            }
+        }
+        return filteredList;
     }
 
     private void setUpData() {
@@ -123,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             movieList.add(pic_25);
 
         }
+
 
     }
     private void filterList(String status){
