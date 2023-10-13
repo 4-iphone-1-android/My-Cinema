@@ -3,13 +3,19 @@ package com.example.mycinema;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
 
     Movie selectedShape;
+    WebView trailer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +34,33 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setValues() {
         TextView txtView = (TextView) findViewById(R.id.movieName);
-        ImageView imgView = (ImageView) findViewById(R.id.movieImage);
-
         txtView.setText(selectedShape.getName());
 
+        ImageView imgView = (ImageView) findViewById(R.id.movieImage);
         imgView.setImageResource(selectedShape.getImage());
+
+        TextView description = (TextView) findViewById(R.id.movieDescription);
+        description.setText(selectedShape.getDescription());
+
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.movieRating);
+        ratingBar.setRating((float) selectedShape.getRating());
+
+        //WebView trailer = (WebView) findViewById(R.id.movieTrailer);
+        //trailer.loadUrl(selectedShape.getTrailerURL());
+
+        trailer = (WebView) findViewById(R.id.movieTrailer);
+
+        String videoStr = "<html><body>Promo video<br><iframe width=\"100%\" height=\"315\" " +
+                "src=\"https://www.youtube.com/embed/\"" + selectedShape.getTrailerID() +
+                "frameborder=\"0\" allowfullscreen></iframe></body></html>";
+
+        trailer.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return false;
+            }
+        });
+        trailer.loadData(videoStr, "text/html", "utf-8");
+
     }
 }
