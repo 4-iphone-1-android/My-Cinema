@@ -34,9 +34,6 @@
             app:iconifiedByDefault="false"
             app:queryHint="Find your favourite movies" />
 
-
-
-
         <ListView
             android:id="@+id/movieListView"
             android:layout_width="match_parent"

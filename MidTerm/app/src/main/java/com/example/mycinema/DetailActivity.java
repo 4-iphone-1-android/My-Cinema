@@ -17,13 +17,14 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         getSelectedShape();
         setValues();
-
     }
 
     private void getSelectedShape() {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
         selectedShape = MainActivity.movieList.get(Integer.valueOf(parsedStringID));
+//        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
+
     }
 
     private void setValues() {
