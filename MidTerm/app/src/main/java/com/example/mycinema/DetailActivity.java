@@ -5,17 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
     Movie selectedShape;
     WebView trailer;
+
+    private static ArrayList<Movie> favoriteMovies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +29,32 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         getSelectedShape();
         setValues();
-
+        setUpFavoriteList();
     }
+
+    private void setUpFavoriteList() {
+        ImageView addToFavoriteButton = findViewById(R.id.addFavoriteButton);
+
+        addToFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToFavorites();
+                Toast.makeText(DetailActivity.this, "Added to Favorite List",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addToFavorites() {
+        // Add the selected movie to the static favoriteMovies list
+        favoriteMovies.add(selectedShape);
+    }
+
+    // Static method to get the list of favorite movies
+    public static ArrayList<Movie> getFavoriteMovies() {
+        return favoriteMovies;
+    }
+
 
     private void getSelectedShape() {
         Intent previousIntent = getIntent();

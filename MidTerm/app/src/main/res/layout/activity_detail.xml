@@ -55,6 +55,19 @@
         android:padding="16dp"
         android:stepSize="0.1" />
 
+    <ImageView
+        android:id="@+id/addFavoriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movieRating"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="194dp"
+        android:background="@drawable/heart_shape" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="35dp"
