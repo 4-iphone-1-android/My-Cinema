@@ -59,8 +59,8 @@ public class DetailActivity extends AppCompatActivity {
     private void getSelectedShape() {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
-        selectedShape = MainActivity.movieList.get(Integer.valueOf(parsedStringID));
-//        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
+//        selectedShape = MainActivity.movieList.get(Integer.valueOf(parsedStringID));
+        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
 
     }
 

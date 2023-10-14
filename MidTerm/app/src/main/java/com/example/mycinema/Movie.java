@@ -1,12 +1,10 @@
 package com.example.mycinema;
 
 import java.io.Serializable;
-
-public class Movie implements Serializable {
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+public class Movie implements Serializable {
 
-public class Movie {
     private String id;
     private String name;
     private int image;
