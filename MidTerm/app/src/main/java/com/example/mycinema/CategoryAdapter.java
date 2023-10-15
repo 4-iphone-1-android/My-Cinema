@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -52,8 +53,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 context.startActivity(intent);
             }
         });
-    }
 
+        holder.bookButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // Create an Intent to start the BookActivity
+            Intent intent = new Intent(context, Booking.class);
+
+            // Add any extra data you want to pass to the BookActivity
+            intent.putExtra("movie_id", movie.getId()); // Assuming you have an ID associated with each movie
+
+            // Start the BookActivity
+            context.startActivity(intent);
+        }
+    });
+    }
 
     @Override
     public int getItemCount() {
@@ -63,11 +77,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView movieName;
         ImageView movieImage;
+        AppCompatButton bookButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            movieName = itemView.findViewById(R.id.categoryName);
-            movieImage = itemView.findViewById(R.id.categoryImage);
+            movieName = itemView.findViewById(R.id.movieName);
+            movieImage = itemView.findViewById(R.id.movieImage);
+            bookButton = itemView.findViewById(R.id.movieBook);
         }
     }
 }

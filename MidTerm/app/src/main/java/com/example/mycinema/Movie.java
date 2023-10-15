@@ -8,7 +8,6 @@ public class Movie implements Serializable {
     private String id;
     private String name;
     private int image;
-
     private String genre;
     private String description;
     private double rating;

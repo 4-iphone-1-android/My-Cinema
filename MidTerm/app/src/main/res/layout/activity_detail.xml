@@ -88,7 +88,18 @@
         android:layout_marginTop="38dp"
         android:padding="10dp"
         android:textSize="20sp"
+        android:layout_above="@+id/movieBook"
         android:textColor="#041C45"/>
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/movieBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/textcustom"
+        android:onClick="book"
+        android:text="Book"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
