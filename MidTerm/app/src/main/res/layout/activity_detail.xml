@@ -38,8 +38,6 @@
         android:textStyle="bold"
         android:textColor="#041C45"/>
 
-
-
     <RatingBar
         android:id="@+id/movieRating"
         android:layout_width="210dp"

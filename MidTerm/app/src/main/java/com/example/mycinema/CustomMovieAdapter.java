@@ -13,9 +13,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CustomMovieAdapter extends ArrayAdapter<Movie> {
+    private ArrayList<Movie> favoriteMovies;
 
     public CustomMovieAdapter(Context context, ArrayList<Movie> movies) {
         super(context, 0, movies);
+        favoriteMovies = movies;
     }
 
     @Override
@@ -30,10 +32,9 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
         removeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Movie selectedMovie = movieList.get(position);
-               ArrayList<Movie> favoriteMovie = DetailActivity.getFavoriteMovies();
-              favoriteMovie.remove(selectedMovie.getId().toString());
-               notifyDataSetChanged();
+                Movie selectedMovie = favoriteMovies.get(position);
+                favoriteMovies.remove(selectedMovie);
+                notifyDataSetChanged();
             }
 
         });
