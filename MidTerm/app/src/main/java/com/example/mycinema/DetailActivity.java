@@ -39,9 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         getSelectedShape();
         setValues();
         setUpFavoriteList();
-        btn = findViewById(R.id.book);
-        wv = findViewById(R.id.webView);
-        wv.setVisibility(View.GONE);
+        //btn = findViewById(R.id.book);
     }
 
     private void setUpFavoriteList() {
@@ -50,9 +48,18 @@ public class DetailActivity extends AppCompatActivity {
         addToFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToFavorites();
-                Toast.makeText(DetailActivity.this, "Added to Favorite List",
-                        Toast.LENGTH_SHORT).show();
+                if (favoriteMovies.contains(selectedShape)) {
+                    removeFromFavorites();
+                    addToFavoriteButton.setImageResource(R.drawable.heart_shape); // Change the icon
+
+                    Toast.makeText(DetailActivity.this, "Removed from Favorite List",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    addToFavorites();
+                    addToFavoriteButton.setImageResource(R.drawable.heart_shape); // Change the icon
+                    Toast.makeText(DetailActivity.this, "Added to Favorite List",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -68,7 +75,10 @@ public class DetailActivity extends AppCompatActivity {
         if(!flag){
             favoriteMovies.add(selectedShape);
         }
+    }
 
+    private void removeFromFavorites() {
+        favoriteMovies.remove(selectedShape);
     }
 
     // Static method to get the list of favorite movies

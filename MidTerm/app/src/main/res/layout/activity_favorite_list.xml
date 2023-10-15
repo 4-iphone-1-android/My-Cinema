@@ -24,6 +24,37 @@
             android:text="Cinema"
             android:textSize="30sp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Sort by: "
+                android:textSize="20dp"/>
+
+            <Spinner
+                android:id="@+id/sortSpinner"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:background="@color/white"
+                android:dropDownWidth="match_parent"
+                android:dropDownHeight="wrap_content"
+                android:dropDownHorizontalOffset="50dp"
+                android:dropDownVerticalOffset="50dp"
+                android:dropDownSelector="@color/white"
+                android:spinnerMode="dropdown"
+                android:popupBackground="@color/white"
+                android:entries="@array/sorting_options"/>
+        </LinearLayout>
+
         <ListView
             android:id="@+id/movieListView"
             android:layout_width="match_parent"

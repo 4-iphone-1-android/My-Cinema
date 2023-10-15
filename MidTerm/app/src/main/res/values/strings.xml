@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">My Cinema</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string-array name="sorting_options">
+        <item>Rating (Ascending)</item>
+        <item>Rating (Descending)</item>
+    </string-array>
 
 </resources>
