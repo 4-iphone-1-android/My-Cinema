@@ -23,10 +23,6 @@
             android:name=".FavoriteList"
             android:exported="true" />
         <activity
-            android:name=".BookActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyCinema" />
-        <activity
             android:name=".SearchBar"
             android:exported="false" />
         <activity

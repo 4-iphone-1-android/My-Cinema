@@ -101,7 +101,5 @@ public class Booking extends AppCompatActivity {
             Toast.makeText(this, "Canceled Successfully", Toast.LENGTH_SHORT).show();
             isBooked = false;
         }
-
-
     }
 }

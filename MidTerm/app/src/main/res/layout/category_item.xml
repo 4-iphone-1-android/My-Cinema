@@ -26,7 +26,7 @@
         android:layout_marginTop="8dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/movieBook"
+        android:id="@+id/book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

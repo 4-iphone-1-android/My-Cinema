@@ -9,6 +9,7 @@ import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,6 +21,10 @@ public class DetailActivity extends AppCompatActivity {
 
     Movie selectedShape;
     WebView trailer;
+    private boolean isBooked = false;
+    private Button btn;
+    private WebView wv;
+
 
     private static ArrayList<Movie> favoriteMovies = new ArrayList<>();
 
@@ -30,6 +35,9 @@ public class DetailActivity extends AppCompatActivity {
         getSelectedShape();
         setValues();
         setUpFavoriteList();
+        btn = findViewById(R.id.book);
+        wv = findViewById(R.id.webView);
+        wv.setVisibility(View.GONE);
     }
 
     private void setUpFavoriteList() {
@@ -105,8 +113,21 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void book(View view) {
-        Intent intent = new Intent(this, Booking.class);
-        intent.putExtra("movie", selectedShape);
-        startActivity(intent);
+        if(!isBooked) {
+            Toast.makeText(this, "Booked Successfully", Toast.LENGTH_SHORT).show();
+            wv.setVisibility(View.VISIBLE);
+            wv.loadUrl("https://www.cgv.vn");
+            wv.getSettings().setJavaScriptEnabled(true);
+            isBooked = true;
+            btn.setText("Cancel");
+        }
+        else
+        {
+            btn.setText("Book");
+            wv.loadUrl("about:blank");
+            wv.setVisibility(View.GONE);
+            Toast.makeText(this, "Canceled Successfully", Toast.LENGTH_SHORT).show();
+            isBooked = false;
+        }
     }
 }

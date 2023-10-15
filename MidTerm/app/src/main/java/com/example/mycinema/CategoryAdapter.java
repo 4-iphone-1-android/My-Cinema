@@ -76,7 +76,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(itemView);
             movieName = itemView.findViewById(R.id.movieName);
             movieImage = itemView.findViewById(R.id.movieImage);
-            bookButton = itemView.findViewById(R.id.movieBook);
+            bookButton = itemView.findViewById(R.id.book);
         }
     }
 }
