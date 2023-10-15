@@ -1,5 +1,7 @@
 package com.example.mycinema;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -10,16 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookActivity extends AppCompatActivity {
-
+public class Booking extends AppCompatActivity {
     private Movie selectedMovie;
     private TextView movieName;
     private ImageView movieImage;
@@ -33,9 +32,7 @@ public class BookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book);
-        movieName = findViewById(R.id.movieName);
-        movieImage = findViewById(R.id.movieImage);
+        setContentView(R.layout.activity_booking);
         spinner = findViewById(R.id.spinnerTime);
         movieTime = findViewById(R.id.date);
         quantity = findViewById(R.id.quantity);
@@ -104,6 +101,7 @@ public class BookActivity extends AppCompatActivity {
             Toast.makeText(this, "Canceled Successfully", Toast.LENGTH_SHORT).show();
             isBooked = false;
         }
+
 
     }
 }

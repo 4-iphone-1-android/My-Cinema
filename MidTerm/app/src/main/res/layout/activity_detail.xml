@@ -101,6 +101,5 @@
         android:text="Book"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

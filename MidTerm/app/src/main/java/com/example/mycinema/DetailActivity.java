@@ -59,8 +59,16 @@ public class DetailActivity extends AppCompatActivity {
     private void getSelectedShape() {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
-//        selectedShape = MainActivity.movieList.get(Integer.valueOf(parsedStringID));
-        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
+        if (parsedStringID != null) {
+            try {
+                int id = Integer.parseInt(parsedStringID);
+                selectedShape = MainActivity.movieList.get(id);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
+        }
 
     }
 
@@ -97,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void book(View view) {
-        Intent intent = new Intent(this, BookActivity.class);
+        Intent intent = new Intent(this, Booking.class);
         intent.putExtra("movie", selectedShape);
         startActivity(intent);
     }
