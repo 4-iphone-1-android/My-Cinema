@@ -55,18 +55,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         });
 
         holder.bookButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // Create an Intent to start the BookActivity
-            Intent intent = new Intent(context, Booking.class);
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start the BookActivity
+                Intent intent = new Intent(context, Booking.class);
 
-            // Add any extra data you want to pass to the BookActivity
-            intent.putExtra("movie_id", movie.getId()); // Assuming you have an ID associated with each movie
+                // Add any extra data you want to pass to the BookActivity
+                intent.putExtra("movie", movie); // Assuming you have an ID associated with each movie
 
-            // Start the BookActivity
-            context.startActivity(intent);
-        }
-    });
+                // Start the BookActivity
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

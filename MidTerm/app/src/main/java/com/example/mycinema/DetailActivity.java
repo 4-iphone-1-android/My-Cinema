@@ -128,21 +128,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void book(View view) {
-        if(!isBooked) {
-            Toast.makeText(this, "Booked Successfully", Toast.LENGTH_SHORT).show();
-            wv.setVisibility(View.VISIBLE);
-            wv.loadUrl("https://www.cgv.vn");
-            wv.getSettings().setJavaScriptEnabled(true);
-            isBooked = true;
-            btn.setText("Cancel");
-        }
-        else
-        {
-            btn.setText("Book");
-            wv.loadUrl("about:blank");
-            wv.setVisibility(View.GONE);
-            Toast.makeText(this, "Canceled Successfully", Toast.LENGTH_SHORT).show();
-            isBooked = false;
-        }
+        Intent intent = new Intent(DetailActivity.this, Booking.class);
+        intent.putExtra("movie", selectedShape);
+        startActivity(intent);
     }
 }

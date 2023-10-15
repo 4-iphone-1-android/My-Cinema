@@ -34,6 +34,8 @@ public class Booking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
         spinner = findViewById(R.id.spinnerTime);
+        movieName = findViewById(R.id.movieName);
+        movieImage = findViewById(R.id.movieImage);
         movieTime = findViewById(R.id.date);
         quantity = findViewById(R.id.quantity);
         btn = findViewById(R.id.book);
