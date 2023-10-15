@@ -95,4 +95,10 @@ public class DetailActivity extends AppCompatActivity {
         trailer.loadData(videoStr, "text/html", "utf-8");
 
     }
+
+    public void book(View view) {
+        Intent intent = new Intent(this, BookActivity.class);
+        intent.putExtra("movie", selectedShape);
+        startActivity(intent);
+    }
 }

@@ -18,6 +18,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     private Context context;
     private List<Movie> movieList;
+    private boolean selectedShape;
 
     public CategoryAdapter(Context context, List<Movie> movieList) {
         this.context = context;
@@ -63,4 +64,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             movieImage = itemView.findViewById(R.id.categoryImage);
         }
     }
+
 }
