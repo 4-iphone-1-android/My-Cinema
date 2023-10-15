@@ -11,7 +11,7 @@
     <WebView
         android:id="@+id/movieTrailer"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="400dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"

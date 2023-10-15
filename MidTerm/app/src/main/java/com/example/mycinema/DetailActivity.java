@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -25,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     private Button btn;
     private WebView wv;
 
+    WebSettings trailerSetting;
 
     private static ArrayList<Movie> favoriteMovies = new ArrayList<>();
 
@@ -55,7 +59,16 @@ public class DetailActivity extends AppCompatActivity {
 
     private void addToFavorites() {
         // Add the selected movie to the static favoriteMovies list
-        favoriteMovies.add(selectedShape);
+        boolean flag = false;
+        for (Movie i:favoriteMovies){
+            if (i.getName().equals(selectedShape.getName())){
+                flag = true;
+            }
+        }
+        if(!flag){
+            favoriteMovies.add(selectedShape);
+        }
+
     }
 
     // Static method to get the list of favorite movies
@@ -96,11 +109,13 @@ public class DetailActivity extends AppCompatActivity {
         //WebView trailer = (WebView) findViewById(R.id.movieTrailer);
         //trailer.loadUrl(selectedShape.getTrailerURL());
 
-        trailer = (WebView) findViewById(R.id.movieTrailer);
-
-        String videoStr = "<html><body>Promo video<br><iframe width=\"100%\" height=\"315\" " +
-                "src=\"https://www.youtube.com/embed/\"" + selectedShape.getTrailerID() +
-                "frameborder=\"0\" allowfullscreen></iframe></body></html>";
+        trailer = findViewById(R.id.movieTrailer);
+        trailerSetting = trailer.getSettings();
+        trailerSetting.setJavaScriptEnabled(true);
+        trailerSetting.setMediaPlaybackRequiresUserGesture(false);
+        trailer.setWebChromeClient(new WebChromeClient());
+        trailer.setWebViewClient(new WebViewClient());
+        trailer.getSettings().setPluginState(WebSettings.PluginState.ON);
 
         trailer.setWebViewClient(new WebViewClient() {
             @Override
@@ -108,7 +123,7 @@ public class DetailActivity extends AppCompatActivity {
                 return false;
             }
         });
-        trailer.loadData(videoStr, "text/html", "utf-8");
+        trailer.loadUrl(selectedShape.getTrailerURL());
 
     }
 

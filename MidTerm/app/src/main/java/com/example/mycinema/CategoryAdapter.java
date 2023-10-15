@@ -38,6 +38,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Movie movie = movieList.get(position);
         holder.movieName.setText(movie.getName());
         holder.movieImage.setImageResource(movie.getImage());
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                return false;
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
