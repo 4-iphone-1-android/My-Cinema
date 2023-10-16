@@ -1,115 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFC9C9">
 
-    <WebView
-        android:id="@+id/movieTrailer"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/movieImage"
-        android:layout_width="160dp"
-        android:layout_height="230dp"
-        android:layout_below="@+id/movieTrailer"
-        android:layout_marginTop="-30dp"
-        android:layout_marginStart="10dp"
-        android:scaleType="fitCenter" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/movieName"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/movieTrailer"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#041C45"/>
+            <WebView
+                android:id="@+id/movieTrailer"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp" />
 
-    <RatingBar
-        android:id="@+id/movieRating"
-        android:layout_width="210dp"
-        android:layout_height="65dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/movieName"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="25dp"
-        android:background="#665050"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:padding="16dp"
-        android:stepSize="0.1" />
+            <ImageView
+                android:id="@+id/movieImage"
+                android:layout_width="160dp"
+                android:layout_height="230dp"
+                android:layout_below="@+id/movieTrailer"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-30dp"
+                android:scaleType="fitCenter" />
 
-    <ImageView
-        android:id="@+id/addFavoriteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/movieRating"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center_vertical"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginVertical="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="194dp"
-        android:background="@drawable/heart_shape" />
+            <TextView
+                android:id="@+id/movieName"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieTrailer"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:textColor="#041C45"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/movieRating"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="87dp"
-        android:text="Add To Favorite"
-        android:textSize="15dp" />
+            <RatingBar
+                android:id="@+id/movieRating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="210dp"
+                android:layout_height="65dp"
+                android:layout_below="@+id/movieName"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="25dp"
+                android:background="#665050"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:padding="16dp"
+                android:stepSize="0.1" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@+id/movieImage"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:text="Description"
-        android:textColor="#041C45"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        />
+            <ImageView
+                android:id="@+id/addFavoriteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieRating"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="194dp"
+                android:background="@drawable/heart_shape" />
 
-    <TextView
-        android:id="@+id/movieDescription"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/movieImage"
-        android:layout_marginTop="38dp"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:layout_above="@+id/book"
-        android:textColor="#041C45"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieRating"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="87dp"
+                android:text="Add To Favorite"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/movieImage"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Description"
+                android:textColor="#041C45"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/movieDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieImage"
+                android:layout_marginTop="38dp"
+                android:padding="10dp"
+                android:textColor="#041C45"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:background="@drawable/textcustom"
         android:onClick="book"
         android:text="Book"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true" />
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>
