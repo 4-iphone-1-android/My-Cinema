@@ -7,7 +7,7 @@
     android:background="#FFC9C9">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -17,7 +17,7 @@
             <WebView
                 android:id="@+id/movieTrailer"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -84,7 +84,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/movieImage"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
@@ -95,12 +95,12 @@
             <TextView
                 android:id="@+id/movieDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/movieImage"
                 android:layout_marginTop="38dp"
                 android:padding="10dp"
                 android:textColor="#041C45"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
     </ScrollView>
 
