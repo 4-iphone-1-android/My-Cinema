@@ -44,9 +44,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public boolean onLongClick(View view) {
                 ArrayList<Movie> longFavor = DetailActivity.getFavoriteMovies();
-                longFavor.add(movie);
-                Toast.makeText(context, movie.getName()+ " Adding to favourite list",
-                        Toast.LENGTH_LONG).show();
+                boolean flag = false;
+                for (Movie i : longFavor) {
+                    if (i.getName().equals(movie.getName())) {
+                        flag = true;
+                    }
+                }
+                if (!flag) {
+                    longFavor.add(movie);
+                    Toast.makeText(context, movie.getName() + " Adding to favourite list",
+                            Toast.LENGTH_LONG).show();
+                }
                 return false;
             }
         });
