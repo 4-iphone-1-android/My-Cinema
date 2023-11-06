@@ -16,7 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -75,25 +80,53 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(RegisterActivity.this,
-                                    "Registration successful", Toast.LENGTH_SHORT).show();
                             // Add user details to Firebase Realtime Database if needed
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            // Send verification email
-                            firebaseUser.sendEmailVerification();
 
-                            // Navigate to the login activity
-                            Intent mainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(mainIntent);
-                            finish();
+                            // Enter user details to Firebase Realtime Database
+                            ReadWriteUserDetails readWriteUserDetails = new ReadWriteUserDetails(fullNameText, dateOfBirthText, phoneNumberText, genderText);
+
+                            // Extracting User reference for Database for "Registered Users"
+                            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+                            referenceProfile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Send verification email
+                                        firebaseUser.sendEmailVerification();
+
+                                        Toast.makeText(RegisterActivity.this,
+                                                "Registration successful. Please verify your email.", Toast.LENGTH_SHORT).show();
+
+                                        // Navigate to the login activity
+                                        Intent mainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(mainIntent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this,
+                                                "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
                         } else {
                             // If registration fails, display a message to the user.
-                            Toast.makeText(RegisterActivity.this,
-                                    "Registration failed. " +
-                                            "Make sure you have entered all information correctly.",
-                                    Toast.LENGTH_SHORT).show();
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthWeakPasswordException weakPassword) {
+                                password.setError("Password must be at least 6 characters");
+                                password.requestFocus();
+                            } catch (FirebaseAuthInvalidCredentialsException malformedEmail) {
+                                email.setError("Invalid email");
+                                email.requestFocus();
+                            } catch (FirebaseAuthUserCollisionException existEmail) {
+                                email.setError("Email already registered");
+                                email.requestFocus();
+                            } catch (Exception e) {
+                                Toast.makeText(RegisterActivity.this,
+                                        "Registration failed", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });

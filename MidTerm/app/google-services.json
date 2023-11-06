@@ -2,7 +2,9 @@
   "project_info": {
     "project_number": "656319884442",
     "project_id": "my-cinema-87737",
-    "storage_bucket": "my-cinema-87737.appspot.com"
+    "storage_bucket": "my-cinema-87737.appspot.com",
+    "firebase_url": "https://my-cinema-87737-default-rtdb.asia-southeast1.firebasedatabase.app/"
+
   },
   "client": [
     {
