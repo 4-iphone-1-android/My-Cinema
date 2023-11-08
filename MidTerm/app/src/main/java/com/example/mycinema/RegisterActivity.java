@@ -1,10 +1,12 @@
 package com.example.mycinema;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerButton;
 
     private FirebaseAuth mAuth;
+    public ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
         maleRadioButton = findViewById(R.id.maleRadioButton);
         femaleRadioButton = findViewById(R.id.femaleRadioButton);
         registerButton = findViewById(R.id.registerButton);
+        progressBar = findViewById(R.id.progressBar);
+
+// To show the progress bar
+        progressBar.setVisibility(View.VISIBLE);
+
+// To hide the progress bar
+        progressBar.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -74,39 +84,34 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
+// Create a new ProgressDialog instance
+        final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+        progressDialog.setMessage("Registering...");
 
         mAuth.createUserWithEmailAndPassword(emailText, passwordText)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Add user details to Firebase Realtime Database if needed
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
-                            // Enter user details to Firebase Realtime Database
                             ReadWriteUserDetails readWriteUserDetails = new ReadWriteUserDetails(fullNameText, dateOfBirthText, phoneNumberText, genderText);
-
-                            // Extracting User reference for Database for "Registered Users"
                             DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
                             referenceProfile.child(firebaseUser.getUid()).setValue(readWriteUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        // Send verification email
                                         firebaseUser.sendEmailVerification();
-
-                                        Toast.makeText(RegisterActivity.this,
-                                                "Registration successful. Please verify your email.", Toast.LENGTH_SHORT).show();
-
-                                        // Navigate to the login activity
+                                        Toast.makeText(RegisterActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_SHORT).show();
                                         Intent mainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(mainIntent);
                                         finish();
                                     } else {
-                                        Toast.makeText(RegisterActivity.this,
-                                                "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
                                     }
+
+                                    // Show the progress dialog
+                                    progressDialog.show();
                                 }
                             });
 
@@ -132,3 +137,4 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 }
+
