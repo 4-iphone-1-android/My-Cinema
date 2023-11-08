@@ -1,7 +1,10 @@
 package com.example.mycinema;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,7 +68,18 @@ public class LoginActivity extends AppCompatActivity {
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    try{
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidUserException e) {
+                                        usernameEditText.setError("User does not exist or has been deleted. Please register again.");
+                                        usernameEditText.requestFocus();
+                                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                                        usernameEditText.setError("Invalid email or password. Kindly, check check and re-enter.");
+                                        usernameEditText.requestFocus();
+                                    } catch (Exception e) {
+                                        Log.e (TAG, e.getMessage());
+                                        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });

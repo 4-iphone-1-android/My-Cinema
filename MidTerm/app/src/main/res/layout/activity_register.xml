@@ -64,6 +64,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:textColorHint="#AFADAD" />
 
+
             <EditText
                 android:id="@+id/dateOfBirth"
                 android:layout_width="match_parent"
@@ -72,6 +73,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:drawableLeft="@drawable/baseline_calendar_today_24"
                 android:drawablePadding="8dp"
+                android:focusable="false"
                 android:hint="Date of Birth (dd/mm/yyyy)"
                 android:inputType="date"
                 android:padding="8dp"
@@ -176,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </androidx.cardview.widget.CardView>
 
