@@ -1,8 +1,11 @@
 package com.example.mycinema;
 
+import android.graphics.drawable.Drawable;
+
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class Movie implements Serializable {
 
     private String id;
@@ -13,11 +16,27 @@ public class Movie implements Serializable {
     private double rating;
     private String trailerURL;
 
-    public Movie(String id, String name, int image, String genre) {
+    private String base64Image;
+
+    public Drawable getRealImage() {
+        return realImage;
+    }
+
+    public void setRealImage(Drawable realImage) {
+        this.realImage = realImage;
+    }
+
+    private Drawable realImage;
+
+
+    public Movie(String id, String name, int image, String genre, String description, double rating, String trailerURL) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.genre = genre;
+        this.description = description;
+        this.rating = rating;
+        this.trailerURL = trailerURL;
     }
 
     public String getId() {
@@ -44,12 +63,15 @@ public class Movie implements Serializable {
         this.image = image;
     }
 
-    public String getGenre(){ return genre;}
+    public String getGenre() {
+        return genre;
+    }
 
-    public void setGenre(){ this.genre = genre;}
+    public void setGenre() {
+        this.genre = genre;
+    }
 
     public String getDescription() {
-        String description = null;
         return description;
     }
 
@@ -58,7 +80,6 @@ public class Movie implements Serializable {
     }
 
     public double getRating() {
-        double rating = 0;
         return rating;
     }
 
@@ -67,7 +88,6 @@ public class Movie implements Serializable {
     }
 
     public String getTrailerURL() {
-        String trailerURL = null;
         return trailerURL;
     }
 
@@ -76,13 +96,9 @@ public class Movie implements Serializable {
     }
 
     public String getTrailerID() {
-        // Check if the url is valid and contains youtube.com or youtu.be
-        if (trailerURL == null || (!trailerURL.contains("youtube.com") && !trailerURL.contains("youtu.be"))){
+        if (trailerURL == null || (!trailerURL.contains("youtube.com") && !trailerURL.contains("youtu.be"))) {
             return null;
         }
-        // Extract the ID from the url using regex
-        // The ID is usually after "v=" or "youtu.be/"
-        // The ID is 11 characters long and can contain alphanumeric characters, dashes and underscores
         Pattern pattern = Pattern.compile("(?<=v=|youtube.com/)[a-zA-Z0-9_-]{11}");
         Matcher matcher = pattern.matcher(trailerURL);
         if (matcher.find()) {
@@ -91,5 +107,12 @@ public class Movie implements Serializable {
             return null;
         }
 
+    }
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
     }
 }
