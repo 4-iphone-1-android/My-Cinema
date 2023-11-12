@@ -1,10 +1,13 @@
 package com.example.mycinema;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -25,13 +28,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText fullName, email, dateOfBirth, phoneNumber, password, confirmPassword;
     private RadioGroup genderGroup;
     private RadioButton maleRadioButton, femaleRadioButton;
     private Button registerButton;
-
     private FirebaseAuth mAuth;
     public ProgressBar progressBar;
 
@@ -52,10 +57,29 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressBar);
 
-// To show the progress bar
+        // Setting up Date Picker for Date of Birth
+        dateOfBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                int monthOfYear = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonthOfYear, int selectedDayOfMonth) {
+                        dateOfBirth.setText(selectedDayOfMonth + "/" + (selectedMonthOfYear + 1) + "/" + selectedYear);
+                    }
+                }, year, monthOfYear, dayOfMonth);
+                datePickerDialog.show();
+            }
+        });
+
+        // To show the progress bar
         progressBar.setVisibility(View.VISIBLE);
 
-// To hide the progress bar
+        // To hide the progress bar
         progressBar.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
@@ -76,15 +100,28 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordText = password.getText().toString();
         String confirmPasswordText = confirmPassword.getText().toString();
 
+        // Validate Mobile Number using Matcher and Pattern (Regular Expression)
+        String mobileRegex = "[0-9]{10}";
+        Pattern mobilePattern = Pattern.compile(mobileRegex);
+        Matcher mobileMatcher = mobilePattern.matcher(phoneNumber.getText().toString());
+
         int selectedGenderId = genderGroup.getCheckedRadioButtonId();
         RadioButton selectedGenderRadioButton = findViewById(selectedGenderId);
         String genderText = selectedGenderRadioButton.getText().toString();
 
         if (!passwordText.equals(confirmPasswordText)) {
-            Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Please re-enter your password", Toast.LENGTH_SHORT).show();
+            confirmPassword.setError("Passwords do not match");
+            confirmPassword.requestFocus();
+            return;
+        } else if (!mobileMatcher.find() && phoneNumberText.length() != 10) {
+            Toast.makeText(RegisterActivity.this, "Please re-enter your mobile number", Toast.LENGTH_SHORT).show();
+            phoneNumber.setError("Invalid mobile number");
+            phoneNumber.requestFocus();
             return;
         }
-// Create a new ProgressDialog instance
+
+        // Create a new ProgressDialog instance
         final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.setMessage("Registering...");
 
@@ -100,12 +137,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        firebaseUser.sendEmailVerification();
-                                        Toast.makeText(RegisterActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_SHORT).show();
-                                        Intent mainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(mainIntent);
-                                        finish();
+                                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(RegisterActivity.this, "Registration successful. Please verify your email.", Toast.LENGTH_SHORT).show();
+                                                    Intent mainIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                    mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(mainIntent);
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
                                     }
@@ -137,4 +182,3 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 }
-
