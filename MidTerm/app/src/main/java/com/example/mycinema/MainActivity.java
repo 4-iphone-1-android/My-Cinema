@@ -17,7 +17,9 @@ import com.example.mycinema.setupdata.setUpData;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 
 import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -26,10 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ArrayList<Movie> movieList = new ArrayList<>();
     public static ArrayList<Movie> trendingMovies = new ArrayList<>();
     private String selectedFilter = "all";
-    private Firebase storage;
+    private FirebaseAuth storage;
     private DatabaseReference myRef;
     private setUpData mySetupData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         heartButton.setOnClickListener(this);
         mySetupData = new setUpData(this);
         mySetupData.pushMovies(movieList);
+
+        storage = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = storage.getCurrentUser();
     }
+
 
     private void setUpTrendingFilm(){
         RecyclerView recyclerView = findViewById(R.id.trendingList);

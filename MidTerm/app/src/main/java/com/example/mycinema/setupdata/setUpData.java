@@ -27,9 +27,9 @@ public class setUpData {
     private DatabaseReference moviesRef;
 
     private Context context;
-    private ArrayList<Movie> retrieveData(){
-
-    }
+//    private ArrayList<Movie> retrieveData(){
+//
+//    }
 
     public setUpData(Context context) {
         this.context = context;
