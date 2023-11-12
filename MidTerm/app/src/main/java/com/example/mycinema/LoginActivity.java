@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
-    private TextView signupText;
+    private TextView signupText, forgotPasswordText;
 
     private FirebaseAuth mAuth;
 
@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         signupText = findViewById(R.id.registerText);
+        forgotPasswordText = findViewById(R.id.forgotPasswordText);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +79,9 @@ public class LoginActivity extends AppCompatActivity {
                                     }
 
 
-
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    try{
+                                    try {
                                         throw task.getException();
                                     } catch (FirebaseAuthInvalidUserException e) {
                                         usernameEditText.setError("User does not exist or has been deleted. Please register again.");
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                         usernameEditText.setError("Invalid email or password. Kindly, check check and re-enter.");
                                         usernameEditText.requestFocus();
                                     } catch (Exception e) {
-                                        Log.e (TAG, e.getMessage());
+                                        Log.e(TAG, e.getMessage());
                                         Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -103,6 +103,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        forgotPasswordText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -129,15 +137,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Check if user is already logged in and redirect to MainActivity
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null && currentUser.isEmailVerified()) {
-            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(mainIntent);
-            finish();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null && currentUser.isEmailVerified()) {
+//            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+//            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(mainIntent);
+//            finish();
+//        }
+//    }
 }
