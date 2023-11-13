@@ -27,7 +27,9 @@ public class Movie implements Serializable {
     }
 
     private Drawable realImage;
+    public Movie() {
 
+    }
 
     public Movie(String id, String name, int image, String genre, String description, double rating, String trailerURL) {
         this.id = id;

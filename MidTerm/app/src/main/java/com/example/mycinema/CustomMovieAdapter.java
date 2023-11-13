@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class CustomMovieAdapter extends ArrayAdapter<Movie> {
@@ -24,19 +27,18 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Movie movie = getItem(position);
 
-
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.movie_cell_favorite_list, parent, false);
         }
+
         Button removeButton = convertView.findViewById(R.id.removeButton);
-        removeButton.setOnClickListener(new View.OnClickListener(){
+        removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Movie selectedMovie = favoriteMovies.get(position);
                 favoriteMovies.remove(selectedMovie);
                 notifyDataSetChanged();
             }
-
         });
 
         ImageView imageView = convertView.findViewById(R.id.movieImage);
@@ -45,9 +47,12 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
         // Set the movie name
         textView.setText(movie.getName());
 
-        // Set the movie image
-        imageView.setImageResource(movie.getImage());
+        // Load the movie image using Glide
+        Glide.with(getContext())
+                .load(movie.getImage())
+                .into(imageView);
 
         return convertView;
     }
+
 }

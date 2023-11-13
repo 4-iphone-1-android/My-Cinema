@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = movieList.get(position);
         holder.movieName.setText(movie.getName());
+
+        Glide.with(context)
+                .load(movie.getImage())
+                .into(holder.movieImage);
+
         holder.movieImage.setImageResource(movie.getImage());
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
