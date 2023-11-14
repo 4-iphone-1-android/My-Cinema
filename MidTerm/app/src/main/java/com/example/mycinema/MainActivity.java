@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-import com.example.mycinema.setupdata.setUpData;
+//import com.example.mycinema.setupdata.setUpData;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 
 import com.google.firebase.Firebase;
@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ArrayList<Movie> trendingMovies = new ArrayList<>();
     private String selectedFilter = "all";
     private DatabaseReference myRef;
-    private setUpData mySetupData;
+//    private setUpData mySetupData;
     private FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,39 +46,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> openSearchBarActivity());
 
         setUpBrowseCategories();
-        setUpTrendingFilm();
+//        setUpTrendingFilm();
 
         ImageView heartButton = findViewById(R.id.showFavoriteButton);
         heartButton.setOnClickListener(this);
-
-        mySetupData = new setUpData(this);
-        mySetupData.pushMovies(movieList);
+//
+//        mySetupData = new setUpData(this);
+//        mySetupData.pushMovies(movieList);
 
     }
 
-    private void setUpTrendingFilm(){
-        DatabaseReference myRef = database.getReference("trending");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                trendingMovies.clear();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Movie movie = postSnapshot.getValue(Movie.class);
-                    trendingMovies.add(movie);
-                }
-                setUpTrendingFilm();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        RecyclerView recyclerView = findViewById(R.id.trendingList);
-        CategoryAdapter adapter = new CategoryAdapter(this, trendingMovies);
-        recyclerView.setAdapter(adapter);
-    }
+//    private void setUpTrendingFilm(){
+//        DatabaseReference myRef = database.getReference("trending");
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                trendingMovies.clear();
+//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+//                    Movie movie = postSnapshot.getValue(Movie.class);
+//                    trendingMovies.add(movie);
+//                }
+//                setUpTrendingFilm();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//        RecyclerView recyclerView = findViewById(R.id.trendingList);
+//        CategoryAdapter adapter = new CategoryAdapter(this, trendingMovies);
+//        recyclerView.setAdapter(adapter);
+//    }
 
     private void setUpData(){
         trendingMovies.add(movieList.get(15));
@@ -89,8 +90,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setUpBrowseCategories() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("movies");
+        Query query = myRef.limitToFirst(25);
+        RecyclerView trendingRecycler = findViewById(R.id.trendingList);
+        RecyclerView recyclerView = findViewById(R.id.categoryList);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        CategoryAdapter adapter = new CategoryAdapter(this, movieList);
+        CategoryAdapter adapter2 = new CategoryAdapter(this, trendingMovies);
+
+        recyclerView.setAdapter(adapter);
+        trendingRecycler.setAdapter(adapter2);
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 movieList.clear();
@@ -98,8 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Movie movie = postSnapshot.getValue(Movie.class);
                     movieList.add(movie);
                 }
-                setUpBrowseCategories();
-                setUpTrendingFilm();
+                if (adapter != null){
+                    adapter.notifyDataSetChanged();
+                }
+                if (movieList.size() == 25){
+                    setUpData();
+                    adapter2.notifyDataSetChanged();
+                }
+
             }
 
             @Override
@@ -108,9 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.categoryList);
-        CategoryAdapter adapter = new CategoryAdapter(this, movieList);
-        recyclerView.setAdapter(adapter);
+
     }
 
     private void filterList(String status){
