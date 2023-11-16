@@ -17,6 +17,12 @@
         android:theme="@style/Theme.MyCinema"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity

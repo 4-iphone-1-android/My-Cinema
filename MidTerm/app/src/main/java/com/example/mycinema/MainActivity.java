@@ -50,35 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView heartButton = findViewById(R.id.showFavoriteButton);
         heartButton.setOnClickListener(this);
+
+        ImageView profileButton = findViewById(R.id.showProfileButton);
+        profileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
 //
 //        mySetupData = new setUpData(this);
 //        mySetupData.pushMovies(movieList);
 
     }
 
-//    private void setUpTrendingFilm(){
-//        DatabaseReference myRef = database.getReference("trending");
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                trendingMovies.clear();
-//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-//                    Movie movie = postSnapshot.getValue(Movie.class);
-//                    trendingMovies.add(movie);
-//                }
-//                setUpTrendingFilm();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//        RecyclerView recyclerView = findViewById(R.id.trendingList);
-//        CategoryAdapter adapter = new CategoryAdapter(this, trendingMovies);
-//        recyclerView.setAdapter(adapter);
-//    }
 
     private void setUpData(){
         trendingMovies.add(movieList.get(15));
