@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void setUpData(){
-        trendingMovies.add(movieList.get(15));
-        trendingMovies.add(movieList.get(16));
-        trendingMovies.add(movieList.get(17));
-        trendingMovies.add(movieList.get(18));
-        trendingMovies.add(movieList.get(19));
+        trendingMovies.add(movieList.get(1));
+        trendingMovies.add(movieList.get(2));
+        trendingMovies.add(movieList.get(3));
+        trendingMovies.add(movieList.get(4));
+        trendingMovies.add(movieList.get(5));
     }
     private void setUpBrowseCategories() {
         database = FirebaseDatabase.getInstance();
