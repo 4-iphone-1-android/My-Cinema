@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#CFCFCF">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/layout_head"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="#5CC09F">
+            android:background="@color/white">
 
             <RelativeLayout
                 android:id="@+id/RL_imageView"
