@@ -46,10 +46,11 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
 
         // Set the movie name
         textView.setText(movie.getName());
+        byte[] decodedString = android.util.Base64.decode(movie.getBase64Image(), android.util.Base64.DEFAULT);
 
         // Load the movie image using Glide
         Glide.with(getContext())
-                .load(movie.getImage())
+                .load(decodedString)
                 .into(imageView);
 
         return convertView;

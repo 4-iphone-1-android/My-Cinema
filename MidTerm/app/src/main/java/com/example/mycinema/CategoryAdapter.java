@@ -41,12 +41,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = movieList.get(position);
         holder.movieName.setText(movie.getName());
+        byte[] decodedString = android.util.Base64.decode(movie.getBase64Image(), android.util.Base64.DEFAULT);
 
         Glide.with(context)
-                .load(movie.getImage())
+                .load(decodedString)
                 .into(holder.movieImage);
 
-        holder.movieImage.setImageResource(movie.getImage());
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
