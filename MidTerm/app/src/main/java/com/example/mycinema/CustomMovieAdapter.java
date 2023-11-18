@@ -17,10 +17,12 @@ import java.util.ArrayList;
 
 public class CustomMovieAdapter extends ArrayAdapter<Movie> {
     private ArrayList<Movie> favoriteMovies;
+    private Context context;
 
     public CustomMovieAdapter(Context context, ArrayList<Movie> movies) {
         super(context, 0, movies);
         favoriteMovies = movies;
+        this.context = context;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.movie_cell_favorite_list, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.movie_cell_favorite_list, parent, false);
         }
 
         Button removeButton = convertView.findViewById(R.id.removeButton);
@@ -49,7 +51,7 @@ public class CustomMovieAdapter extends ArrayAdapter<Movie> {
         byte[] decodedString = android.util.Base64.decode(movie.getBase64Image(), android.util.Base64.DEFAULT);
 
         // Load the movie image using Glide
-        Glide.with(getContext())
+        Glide.with(context)
                 .load(decodedString)
                 .into(imageView);
 

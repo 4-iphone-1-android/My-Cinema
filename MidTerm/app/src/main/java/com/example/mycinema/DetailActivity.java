@@ -18,6 +18,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
@@ -90,16 +92,8 @@ public class DetailActivity extends AppCompatActivity {
     private void getSelectedShape() {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
-        if (parsedStringID != null) {
-            try {
-                int id = Integer.parseInt(parsedStringID);
-                selectedShape = MainActivity.movieList.get(id);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        } else {
-            selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
-        }
+
+        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
 
     }
 
@@ -108,7 +102,10 @@ public class DetailActivity extends AppCompatActivity {
         txtView.setText(selectedShape.getName());
 
         ImageView imgView = (ImageView) findViewById(R.id.movieImage);
-        imgView.setImageResource(selectedShape.getImage());
+        byte[] decodedString = android.util.Base64.decode(selectedShape.getBase64Image(), android.util.Base64.DEFAULT);
+        Glide.with(this)
+                .load(decodedString)
+                .into(imgView);
 
         TextView description = (TextView) findViewById(R.id.movieDescription);
         description.setText(selectedShape.getDescription());

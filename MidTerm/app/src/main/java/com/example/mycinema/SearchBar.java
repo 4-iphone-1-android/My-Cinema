@@ -22,7 +22,7 @@ public class SearchBar extends AppCompatActivity {
         setContentView(R.layout.activity_search_bar);
         initSearchWidgets();
         setUpList();
-        setUpOnclickListener();
+//        setUpOnclickListener();
     }
 
     private void initSearchWidgets() {
@@ -59,17 +59,17 @@ public class SearchBar extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void setUpOnclickListener() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Movie selectShape = (Movie) (listView.getItemAtPosition(position));
-                Intent showDetail = new Intent(getApplicationContext(), DetailActivity.class);
-                showDetail.putExtra("id", selectShape.getId());
-                startActivity(showDetail);
-            }
-        });
-    }
+//    private void setUpOnclickListener() {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                Movie selectShape = (Movie) (listView.getItemAtPosition(position));
+//                Intent showDetail = new Intent(getApplicationContext(), DetailActivity.class);
+//                showDetail.putExtra("id", selectShape.getId());
+//                startActivity(showDetail);
+//            }
+//        });
+//    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

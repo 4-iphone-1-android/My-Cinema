@@ -2,6 +2,9 @@ package com.example.mycinema;
 
 public class ReadWriteUserDetails {
     public String fullName, dateOfBirth, phoneNumber, gender;
+    public ReadWriteUserDetails() {
+
+    }
 
     public ReadWriteUserDetails(String fullNameText, String dateOfBirthText, String phoneNumberText, String genderText) {
         this.fullName = fullNameText;

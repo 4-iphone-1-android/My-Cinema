@@ -239,7 +239,7 @@
                     android:background="@drawable/round_phone_24" />
 
                 <TextView
-                    android:id="@+id/textView_show_mobile"
+                    android:id="@+id/textView_show_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/ic_mobile"
