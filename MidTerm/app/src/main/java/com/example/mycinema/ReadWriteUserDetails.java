@@ -1,7 +1,7 @@
 package com.example.mycinema;
 
 public class ReadWriteUserDetails {
-    public String fullName, dateOfBirth, phoneNumber, gender;
+    public String fullName, dateOfBirth, phoneNumber, gender, profileImageUrl;
     public ReadWriteUserDetails() {
 
     }
@@ -11,5 +11,6 @@ public class ReadWriteUserDetails {
         this.dateOfBirth = dateOfBirthText;
         this.phoneNumber = phoneNumberText;
         this.gender = genderText;
+        this.profileImageUrl = "";
     }
 }
