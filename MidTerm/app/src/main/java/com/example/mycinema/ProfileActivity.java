@@ -3,7 +3,10 @@ package com.example.mycinema;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +32,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         textViewWelcome = findViewById(R.id.textView_show_welcome);
         textViewFullName = findViewById(R.id.textView_show_full_name);
@@ -59,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ReadWriteUserDetails readWriteUserDetails = snapshot.getValue(ReadWriteUserDetails.class);
-                if (readWriteUserDetails != null){
+                if (readWriteUserDetails != null) {
                     fullName = readWriteUserDetails.fullName;
                     email = firebaseUser.getEmail();
                     doB = readWriteUserDetails.dateOfBirth;
@@ -83,5 +88,39 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int UID = item.getItemId();
+        if (UID == R.id.menu_update_profile) {
+            Intent intent = new Intent(this, UpdateProfileActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_change_password) {
+            Intent intent = new Intent(this, ChangePasswordActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_delete_account) {
+            Intent intent = new Intent(this, DeleteAccountActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_logout) {
+            logoutUser();
+        } else if (UID == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logoutUser() {
+        mAuth.signOut();
+        Intent mainIntent = new Intent(this, LoginActivity.class);
+        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mainIntent);
+        finish();
     }
 }
