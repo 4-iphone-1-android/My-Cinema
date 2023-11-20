@@ -163,7 +163,7 @@
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/baseline_calendar_today_24" />
+                    android:background="@drawable/baseline_cake_24" />
 
                 <TextView
                     android:id="@+id/textView_show_dob"

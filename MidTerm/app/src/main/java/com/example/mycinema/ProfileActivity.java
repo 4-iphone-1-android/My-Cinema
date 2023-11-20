@@ -55,6 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         textViewWelcome = findViewById(R.id.textView_show_welcome);
         textViewFullName = findViewById(R.id.textView_show_full_name);
         textViewEmail = findViewById(R.id.textView_show_email);
@@ -230,4 +232,37 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int UID = item.getItemId();
+        if (UID == R.id.menu_update_profile) {
+            Intent intent = new Intent(this, UpdateProfileActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_change_password) {
+            Intent intent = new Intent(this, ChangePasswordActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_delete_account) {
+            Intent intent = new Intent(this, DeleteAccountActivity.class);
+            startActivity(intent);
+        } else if (UID == R.id.menu_logout) {
+            logoutUser();
+        } else if (UID == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logoutUser() {
+        mAuth.signOut();
+        Intent mainIntent = new Intent(this, LoginActivity.class);
+        mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mainIntent);
+        finish();
+    }
 }

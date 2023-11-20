@@ -71,7 +71,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/custom_edit_text"
-                android:drawableLeft="@drawable/baseline_calendar_today_24"
+                android:drawableLeft="@drawable/baseline_cake_24"
                 android:drawablePadding="8dp"
                 android:focusable="false"
                 android:hint="Date of Birth (dd/mm/yyyy)"
