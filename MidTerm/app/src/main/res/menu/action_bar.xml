@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_update_profile"
-        android:title="Update Profile" />
+        android:title="Update Profile"
+        />
     <item
         android:id="@+id/menu_change_password"
         android:title="Change Password" />
