@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.mycinema.Movie;
 import com.example.mycinema.R;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -64,6 +65,11 @@ public class BookingFragment extends Fragment {
         addList();
         selectedMovie = (Movie) getArguments().getSerializable("movie");
         if (selectedMovie != null) {
+            byte[] decodedString = android.util.Base64.decode(selectedMovie.getBase64Image(), android.util.Base64.DEFAULT);
+
+            Glide.with(getContext())
+                    .load(decodedString)
+                    .into(movieImage);
             movieName.setText(selectedMovie.getName());
             movieImage.setImageResource(selectedMovie.getImage());
         }

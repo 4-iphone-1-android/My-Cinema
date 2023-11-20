@@ -1,5 +1,6 @@
 package com.example.mycinema.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,6 +90,12 @@ public class HomeFragment extends Fragment {
         }
     }
     private void setUpBrowseCategories(View view) {
+        ProgressDialog dialog = new ProgressDialog(getContext());
+        dialog.setCancelable(false);
+        dialog.setTitle("Loading");
+        dialog.setMessage("Wait a second");
+        dialog.show();
+
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("movies");
         Query query = myRef.limitToFirst(25);
@@ -117,6 +124,7 @@ public class HomeFragment extends Fragment {
                     setUpData();
                     adapter2.notifyDataSetChanged();
                 }
+                dialog.cancel();
 
             }
 
