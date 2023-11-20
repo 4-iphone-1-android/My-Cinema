@@ -19,6 +19,9 @@
         android:theme="@style/Theme.MyCinema"
         tools:targetApi="31">
         <activity
+            android:name=".Screen.HomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
@@ -37,22 +40,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Booking"
-            android:exported="false" />
-        <activity
-            android:name=".FavoriteList"
-            android:exported="true" />
-        <activity
             android:name=".SearchBar"
             android:exported="false" />
-        <activity
-            android:name=".DetailActivity"
-            android:exported="false"
-            android:label="@string/title_activity_detail"
-            android:theme="@style/Theme.MyCinema" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>

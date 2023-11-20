@@ -2,6 +2,7 @@ package com.example.mycinema;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mycinema.Fragments.BookingFragment;
+import com.example.mycinema.Fragments.DetailFragment;
+import com.example.mycinema.Screen.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                ArrayList<Movie> longFavor = DetailActivity.getFavoriteMovies();
+                ArrayList<Movie> longFavor = DetailFragment.getFavoriteMovies();
                 boolean flag = false;
                 for (Movie i : longFavor) {
                     if (i.getName().equals(movie.getName())) {
@@ -68,9 +74,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("movie", movie);
-                context.startActivity(intent);
+                Fragment fragment = new Fragment();
+                Class fragmentClass = DetailFragment.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("movie", movie);
+                    fragment.setArguments(bundle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (fragment != null) {
+                    FragmentManager fragmentManager = ((HomeActivity) context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                            .replace(R.id.frameLayout, fragment).commit();
+                }
             }
         });
 
@@ -78,13 +96,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 // Create an Intent to start the BookActivity
-                Intent intent = new Intent(context, Booking.class);
-
-                // Add any extra data you want to pass to the BookActivity
-                intent.putExtra("movie", movie); // Assuming you have an ID associated with each movie
-
-                // Start the BookActivity
-                context.startActivity(intent);
+                Fragment fragment = new Fragment();
+                Class fragmentClass = BookingFragment.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("movie", movie);
+                    fragment.setArguments(bundle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (fragment != null) {
+                    FragmentManager fragmentManager = ((HomeActivity) context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                            .replace(R.id.frameLayout, fragment).commit();
+                }
             }
         });
     }

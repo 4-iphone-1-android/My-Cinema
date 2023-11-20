@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.mycinema.Fragments.DetailFragment;
 
 import java.util.List;
 
@@ -35,14 +36,14 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Glide.with(getContext())
                 .load(decodedString)
                 .into(imgView);
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), DetailActivity.class);
-                intent.putExtra("movie", movie);
-                getContext().startActivity(intent);
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(getContext(), DetailFragment.class);
+////                intent.putExtra("movie", movie);
+////                getContext().startActivity(intent);
+//            }
+//        });
         return convertView;
     }
 }

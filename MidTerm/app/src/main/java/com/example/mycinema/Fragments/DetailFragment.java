@@ -1,12 +1,9 @@
-package com.example.mycinema;
+package com.example.mycinema.Fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -18,11 +15,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.bumptech.glide.Glide;
+import com.example.mycinema.Movie;
+import com.example.mycinema.R;
 
 import java.util.ArrayList;
 
-public class DetailActivity extends AppCompatActivity {
+
+public class DetailFragment extends Fragment {
 
     Movie selectedShape;
     WebView trailer;
@@ -33,19 +38,34 @@ public class DetailActivity extends AppCompatActivity {
     WebSettings trailerSetting;
 
     private static ArrayList<Movie> favoriteMovies = new ArrayList<>();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        getSelectedShape();
-        setValues();
-        setUpFavoriteList();
-        //btn = findViewById(R.id.book);
+    public DetailFragment() {
+        // Required empty public constructor
     }
 
-    private void setUpFavoriteList() {
-        ImageView addToFavoriteButton = findViewById(R.id.addFavoriteButton);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.activity_detail, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getSelectedShape();
+        setValues(view);
+        setUpFavoriteList(view);
+
+        btn = view.findViewById(R.id.book);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                book(view);
+            }
+        });
+    }
+    private void setUpFavoriteList(View view) {
+        ImageView addToFavoriteButton = view.findViewById(R.id.addFavoriteButton);
 
         addToFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +74,12 @@ public class DetailActivity extends AppCompatActivity {
                     removeFromFavorites();
                     addToFavoriteButton.setImageResource(R.drawable.heart_shape); // Change the icon
 
-                    Toast.makeText(DetailActivity.this, "Removed from Favorite List",
+                    Toast.makeText(getContext(), "Removed from Favorite List",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     addToFavorites();
                     addToFavoriteButton.setImageResource(R.drawable.heart_shape); // Change the icon
-                    Toast.makeText(DetailActivity.this, "Added to Favorite List",
+                    Toast.makeText(getContext(), "Added to Favorite List",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -90,33 +110,41 @@ public class DetailActivity extends AppCompatActivity {
 
 
     private void getSelectedShape() {
-        Intent previousIntent = getIntent();
-        String parsedStringID = previousIntent.getStringExtra("id");
-
-        selectedShape = (Movie) previousIntent.getSerializableExtra("movie");
+        Bundle previousIntent = getArguments();
+        String parsedStringID = previousIntent.getString("movieID");
+        if (parsedStringID != null) {
+            try {
+                int id = Integer.parseInt(parsedStringID);
+                selectedShape = HomeFragment.movieList.get(id);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            selectedShape = (Movie) previousIntent.getSerializable("movie");
+        }
 
     }
 
-    private void setValues() {
-        TextView txtView = (TextView) findViewById(R.id.movieName);
+    private void setValues(View view) {
+        TextView txtView = (TextView) view.findViewById(R.id.movieName);
         txtView.setText(selectedShape.getName());
 
-        ImageView imgView = (ImageView) findViewById(R.id.movieImage);
+        ImageView imgView = (ImageView) view.findViewById(R.id.movieImage);
         byte[] decodedString = android.util.Base64.decode(selectedShape.getBase64Image(), android.util.Base64.DEFAULT);
         Glide.with(this)
                 .load(decodedString)
                 .into(imgView);
 
-        TextView description = (TextView) findViewById(R.id.movieDescription);
+        TextView description = (TextView) view.findViewById(R.id.movieDescription);
         description.setText(selectedShape.getDescription());
 
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.movieRating);
+        RatingBar ratingBar = (RatingBar) view.findViewById(R.id.movieRating);
         ratingBar.setRating((float) selectedShape.getRating());
 
         //WebView trailer = (WebView) findViewById(R.id.movieTrailer);
         //trailer.loadUrl(selectedShape.getTrailerURL());
 
-        trailer = findViewById(R.id.movieTrailer);
+        trailer = view.findViewById(R.id.movieTrailer);
         trailerSetting = trailer.getSettings();
         trailerSetting.setJavaScriptEnabled(true);
         trailerSetting.setMediaPlaybackRequiresUserGesture(false);
@@ -135,8 +163,24 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void book(View view) {
-        Intent intent = new Intent(DetailActivity.this, Booking.class);
-        intent.putExtra("movie", selectedShape);
-        startActivity(intent);
+//        Intent intent = new Intent(DetailActivity.this, Booking.class);
+//        intent.putExtra("movie", selectedShape);
+//        startActivity(intent);
+
+        Fragment fragment = new Fragment();
+        Class fragmentClass = BookingFragment.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("movie", selectedShape);
+            fragment.setArguments(bundle);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (fragment != null) {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                    .replace(R.id.frameLayout, fragment).commit();
+        }
     }
 }

@@ -154,19 +154,10 @@
                 tools:context=".MainActivity">
 
                 <ImageView
-                    android:id="@+id/showFavoriteButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginVertical="5dp"
-                    android:background="@drawable/heart_shape" />
-                <ImageView
                     android:id="@+id/showProfileButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginStart="315dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/baseline_account_circle_24" />

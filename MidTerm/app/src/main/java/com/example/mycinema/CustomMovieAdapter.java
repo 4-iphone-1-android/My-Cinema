@@ -1,7 +1,5 @@
 package com.example.mycinema;
 
-import static com.example.mycinema.MainActivity.movieList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

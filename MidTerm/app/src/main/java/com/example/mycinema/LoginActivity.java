@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mycinema.Screen.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // Check if user has verified email
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if (user.isEmailVerified()) {
-                                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                                         mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(mainIntent);
                                         finish();
@@ -137,15 +138,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Check if user is already logged in and redirect to MainActivity
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null && currentUser.isEmailVerified()) {
-            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(mainIntent);
-            finish();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null && currentUser.isEmailVerified()) {
+//            Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+//            mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(mainIntent);
+//            finish();
+//        }
+//    }
 }

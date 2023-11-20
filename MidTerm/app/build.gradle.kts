@@ -76,4 +76,9 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
+    implementation ("com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1")
+
+    //MultiFormatWriter
+    implementation ("com.google.zxing:core:3.3.3")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }

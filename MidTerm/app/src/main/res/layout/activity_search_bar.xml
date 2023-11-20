@@ -15,6 +15,13 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/baseline_arrow_back_24" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -33,6 +40,7 @@
             android:background="@drawable/search_view"
             app:iconifiedByDefault="false"
             app:queryHint="Find your favourite movies" />
+
 
         <ListView
             android:id="@+id/movieListView"
