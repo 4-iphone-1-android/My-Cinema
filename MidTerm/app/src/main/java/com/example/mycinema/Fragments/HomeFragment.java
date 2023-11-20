@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class HomeFragment extends Fragment {
 
     public static ArrayList<Movie> movieList = new ArrayList<>();
@@ -39,10 +38,10 @@ public class HomeFragment extends Fragment {
     private DatabaseReference myRef;
     private FirebaseDatabase database;
     private Button actionBtn, comedyBtn, dramaBtn, animeBtn, horrorBtn;
+
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,15 +79,17 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
     }
-    private void setUpData(){
-        if (trendingMovies.size() == 0){
-        trendingMovies.add(movieList.get(0));
-        trendingMovies.add(movieList.get(12));
-        trendingMovies.add(movieList.get(24));
-        trendingMovies.add(movieList.get(3));
-        trendingMovies.add(movieList.get(5));
+
+    private void setUpData() {
+        if (trendingMovies.size() == 0) {
+            trendingMovies.add(movieList.get(0));
+            trendingMovies.add(movieList.get(12));
+            trendingMovies.add(movieList.get(24));
+            trendingMovies.add(movieList.get(3));
+            trendingMovies.add(movieList.get(5));
         }
     }
+
     private void setUpBrowseCategories(View view) {
         ProgressDialog dialog = new ProgressDialog(getContext());
         dialog.setCancelable(false);
@@ -117,10 +118,10 @@ public class HomeFragment extends Fragment {
                     Movie movie = postSnapshot.getValue(Movie.class);
                     movieList.add(movie);
                 }
-                if (adapter != null){
+                if (adapter != null) {
                     adapter.notifyDataSetChanged();
                 }
-                if (movieList.size() == 25){
+                if (movieList.size() == 25) {
                     setUpData();
                     adapter2.notifyDataSetChanged();
                 }
@@ -133,11 +134,9 @@ public class HomeFragment extends Fragment {
                 Log.d("TAGAPI", "onCancelled: " + databaseError.getMessage());
             }
         });
-
-
     }
 
-    private void filterList(String status , View view){
+    private void filterList(String status, View view) {
         selectedFilter = status;
 
         ArrayList<Movie> filteredMovie = new ArrayList<Movie>();
@@ -151,7 +150,6 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.categoryList);
         recyclerView.setAdapter(adapter);
     }
-
 
     private void openSearchBarActivity() {
         Fragment fragment = new Fragment();
@@ -167,5 +165,4 @@ public class HomeFragment extends Fragment {
                     .replace(R.id.frameLayout, fragment).commit();
         }
     }
-
 }

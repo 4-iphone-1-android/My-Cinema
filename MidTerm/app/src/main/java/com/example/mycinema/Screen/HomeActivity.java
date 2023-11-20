@@ -1,5 +1,6 @@
 package com.example.mycinema.Screen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -23,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     SNavigationDrawer sNavigationDrawer;
     Class fragmentClass;
     private static Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         //then add them to navigation drawer
 
         sNavigationDrawer.setMenuItemList(menuItems);
-        fragmentClass =  HomeFragment.class;
+        fragmentClass = HomeFragment.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
@@ -52,22 +54,22 @@ public class HomeActivity extends AppCompatActivity {
         sNavigationDrawer.setOnMenuItemClickListener(new SNavigationDrawer.OnMenuItemClickListener() {
             @Override
             public void onMenuItemClicked(int position) {
-                System.out.println("Position "+position);
+                System.out.println("Position " + position);
 
-                switch (position){
-                    case 0:{
+                switch (position) {
+                    case 0: {
                         fragmentClass = HomeFragment.class;
                         break;
                     }
-                    case 1:{
+                    case 1: {
                         fragmentClass = TicketFragment.class;
                         break;
                     }
-                    case 2:{
+                    case 2: {
                         fragmentClass = FavoriteListFragment.class;
                         break;
                     }
-                    default:{
+                    default: {
                         fragmentClass = HomeFragment.class;
                     }
                 }
@@ -83,12 +85,12 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onDrawerOpening(){
+            public void onDrawerOpening() {
 
             }
 
             @Override
-            public void onDrawerClosing(){
+            public void onDrawerClosing() {
                 System.out.println("Drawer closed");
 
                 try {
@@ -111,30 +113,22 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerStateChanged(int newState) {
-                System.out.println("State "+newState);
+                System.out.println("State " + newState);
             }
         });
     }
 
-    //thoát chương trình
-    boolean doubleBackToExitPressedOnce = false;
-
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Ấn quay lại lần nữa để thoát chương trình", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                finish();
             }
-        }, 2000);
+        }, 200);
     }
 }

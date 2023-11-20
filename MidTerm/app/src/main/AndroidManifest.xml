@@ -6,7 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,6 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCinema"
         tools:targetApi="31">
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Screen.HomeActivity"
             android:exported="true" />
@@ -31,6 +39,14 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DeleteAccountActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

@@ -95,7 +95,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="textPersonName"
                         android:padding="6dp"
-
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
                 </RelativeLayout>
 
@@ -143,7 +143,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="date"
                         android:padding="6dp"
-
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <ImageView
@@ -199,20 +199,20 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radio_female"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:buttonTint="@color/pink"
-                            android:text="Female"
-                            android:textColor="#666666"
-                            android:textSize="16sp" />
-
-                        <RadioButton
                             android:id="@+id/radio_male"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:buttonTint="@color/pink"
                             android:text="Male"
+                            android:textColor="#666666"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/radio_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/pink"
+                            android:text="Female"
                             android:textColor="#666666"
                             android:textSize="16sp" />
 
@@ -263,7 +263,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="phone"
                         android:padding="6dp"
-
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
                 </RelativeLayout>
 
