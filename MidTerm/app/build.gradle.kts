@@ -81,4 +81,6 @@ dependencies {
     //MultiFormatWriter
     implementation ("com.google.zxing:core:3.3.3")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.journeyapps:zxing-android-embedded:3.6.0")
+
 }

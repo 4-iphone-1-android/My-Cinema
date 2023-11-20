@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView signupText, forgotPasswordText;
 
     private FirebaseAuth mAuth;
-
+    public  static String uID = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // Check if user has verified email
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if (user.isEmailVerified()) {
+                                        uID = user.getUid();
                                         Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                                         mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(mainIntent);
@@ -144,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null && currentUser.isEmailVerified()) {
             Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+            uID = currentUser.getUid();
             mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainIntent);
             finish();
