@@ -1,5 +1,5 @@
 # My Cinema
-![App logo](https://i.ibb.co/k6GWXVM/370125421-2555136981316951-8906401763159225686-n.png)
+![App logo](https://i.ibb.co/k6GWXVM/370125421-2555136981316951-8906401763159225686-n.png=300x200)
 My Cinema is an Android app for movie lovers built using Java and Firebase. Users can browse movies, book tickets, track favorites, and more.
 
 ## Overview
