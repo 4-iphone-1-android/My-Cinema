@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <body class="stackedit">
@@ -27,6 +28,8 @@
 <p>This app was built to modernize and optimize the movie ticketing experience. No more waiting in long lines at the cinema or dealing with sold out shows when you can plan ahead on your own schedule.</p>
 <p>The project aims to demonstrate capabilities in Android development with Java and Google Firebase services. It incorporates authentication, cloud databases, file storage, analytics, and more in a real world application.</p>
 <h2 id="overview-📑">Overview 📑</h2>
+<p>My Cinema allows users to search movies, view details, and book tickets.<br>
+<img src="https://i.ibb.co/MgxDfHd/398503134-860791655733804-5686638221098712344-n.png" alt="Use Case Diagram"></p>
 <h2 id="features-🚀">Features 🚀</h2>
 <p><strong>Authentication</strong> 🔒</p>
 <p>The app offers full user authentication with:</p>
