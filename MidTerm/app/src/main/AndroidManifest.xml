@@ -48,6 +48,10 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".Fragments.ChooseSeatsFragment"
+            android:exported="false" />
+
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -57,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SearchBar"
+            android:name=".Fragments.SearchBarFragment"
             android:exported="false" />
     </application>
 

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieName"
+        android:gravity="center_vertical"
+        android:text="Movie Name"
+        android:textColor="@color/black"
+        android:layout_below="@+id/title"
+        android:textSize="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:text="Ticket information"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_marginLeft="20dp"/>
+
+
+    <ImageView
+        android:id="@+id/movieImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/movieName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+
+        />
+
+    <TextView
+        android:id="@+id/movieDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/movieImage"
+        android:layout_marginVertical="10dp"
+        android:gravity="center_vertical"
+        android:text="Choose date"
+        android:textColor="#041C45"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        />
+
+
+    <TextView
+        android:id="@+id/movieTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date"
+        android:layout_marginVertical="10dp"
+        android:gravity="center_vertical"
+        android:text="Choose time"
+        android:textColor="#041C45"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/movieSeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:layout_marginVertical="10dp"
+        android:gravity="center_vertical"
+        android:text="Choose seats"
+        android:textColor="#041C45"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="24sp" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm"
+        android:layout_margin="10dp"
+        android:text="Confirm"
+        android:background="@drawable/line_11"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        />
+
+
+
+</LinearLayout>
