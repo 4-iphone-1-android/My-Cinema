@@ -9,7 +9,10 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html"><h1 id="my-cinema">My Cinema</h1>
+  <div class="stackedit__html"><!-- BADGES -->
+<p><a href="https://github.com/4-iphone-1-android/mid_term_my_cinema/graphs/contributors"><img src="https://img.shields.io/github/contributors/4-iphone-1-android/mid_term_my_cinema.svg?style=for-the-badge" alt="Contributors"></a> <a href="https://github.com/4-iphone-1-android/mid_term_my_cinema/network/members"><img src="https://img.shields.io/github/forks/4-iphone-1-android/mid_term_my_cinema.svg?style=for-the-badge" alt="Forks"></a>  <a href="https://github.com/4-iphone-1-android/mid_term_my_cinema/stargazers"><img src="https://img.shields.io/github/stars/4-iphone-1-android/mid_term_my_cinema.svg?style=for-the-badge" alt="Stargazers"></a> <a href="https://github.com/4-iphone-1-android/mid_term_my_cinema/issues"><img src="https://img.shields.io/github/issues/4-iphone-1-android/mid_term_my_cinema.svg?style=for-the-badge" alt="Issues"></a> <img src="https://img.shields.io/github/license/4-iphone-1-android/mid_term_my_cinema.svg?style=for-the-badge" alt="MIT License"></p>
+<!-- Badge Definitions -->
+<h1 id="my-cinema">My Cinema</h1>
 <p><img src="https://i.ibb.co/k6GWXVM/370125421-2555136981316951-8906401763159225686-n.png" alt="App logo" width="300" height="200"></p>
 <h2 id="table-of-contents-">Table of Contents *</h2>
 <p><a href="#about-the-project">About the Project</a><br>
@@ -20,7 +23,17 @@
 <a href="#license">License</a><br>
 <a href="#contact">Contact</a></p>
 <h2 id="about-the-project">About The Project</h2>
-<p>My Cinema is an Android app for movie lovers built using Java and Firebase. Users can browse movies, book tickets, track favorites, and more.</p>
+<p>My Cinema is an Android application for booking movie tickets online. Users can browse films, read descriptions, watch trailers, reserve seats, and buy tickets conveniently from their phone.</p>
+<p>Some key features include:</p>
+<ul>
+<li>Browse new movies by genre or see what’s popular</li>
+<li>Read detailed overviews including plots, casts, ratings before deciding</li>
+<li>Watch movie trailers and clips right in the app</li>
+<li>Receive electronic ticket confirmation to show at theater</li>
+<li>Find movies quickly and easily with searching and favorites</li>
+</ul>
+<p>This app was built to modernize and optimize the movie ticketing experience. No more waiting in long lines at the cinema or dealing with sold out shows when you can plan ahead on your own schedule.</p>
+<p>The project aims to demonstrate capabilities in Android development with Java and Google Firebase services. It incorporates authentication, cloud databases, file storage, analytics, and more in a real world application.</p>
 <h2 id="overview">Overview</h2>
 <h2 id="features">Features</h2>
 <p><strong>Authentication</strong></p>
