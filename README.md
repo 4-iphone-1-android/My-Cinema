@@ -1,14 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-
-[![Forks][forks-shield]][forks-url]
-
-[![Stargazers][stars-shield]][stars-url]
-
-[![Issues][issues-shield]][issues-url]
-
-[![MIT License][license-shield]][license-url]
-
-[![LinkedIn][linkedin-shield]][linkedin-url]
 # My Cinema
 ![App logo](https://i.ibb.co/k6GWXVM/370125421-2555136981316951-8906401763159225686-n.png =300x200)
 
@@ -86,24 +75,21 @@ Movies can be browsed by category including:
 -   Animation
 -   And more genres to easily find films
 
+**Technical**
 
-## Technologies
+My Cinema leverages the following tech stack:
 
--   [Show Image](https://developer.android.com/images/brand/Android_Robot.png)
--   [Show Image](https://www.oracle.com/a/tech/img/cb88-java-logo-001.png)
--   [Show Image](https://www.gstatic.com/mobilesdk/160415_mobilesdk/logo/2x/firebase_28dp.png)
--   [Show Image](https://www.sqlite.org/images/sqlite370_banner.gif)
+-   **Java**  - Primary language
+-   **Android Studio**  - Development environment
+-   **Firebase**  - Back-end and databases
+    -   **Authentication**  for user accounts and security
+    -   **Cloud Firestore**  for storing movies, theaters data
+    -   **Cloud Storage**  for images, videos
+    -   **Realtime Database**  for booking and performance
+-   **Zxing API**  - QR code generation
 
-### Firebase Services
+Supports phones and tablets on Android 5.0 and higher. Uses Google Cloud Messaging for push notifications to users.
 
--   [Show Image](https://www.gstatic.com/mobilesdk/160505_mobilesdk/auth_featured_graphic.png)- Authentication
--   [Show Image](https://cloud.google.com/images/products/logos/firestore.svg)- Database
--   [Show Image](https://cloud.google.com/images/products/logos/storage.svg)- File Storage
--   [Show Image](https://cloud.google.com/images/products/logos/cloud-hosting.svg)- Web hosting
-
-## Architecture
-
-[Show Image](https://claude.ai/architecture-diagram.png)
 
 
 ## Getting Started
